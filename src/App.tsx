@@ -1,12 +1,13 @@
 import * as esbuild from 'esbuild-wasm'
 import { useEffect, useRef, useState } from 'react'
 import { unpkgPathPlugin } from './plugins/unpkg-path-plugin'
+import { fetchPlugin } from './plugins/fetch-plugin'
 
 const App = () => {
   const ref = useRef<any>()
   const [input, setInput] = useState('')
   const [code, setCode] = useState('')
-  const { ENV_KEY } = import.meta.env
+  const env = ['process', 'env', 'NODE_ENV'].join('.')
 
   // init esbuild service
   const startService = async () => {
@@ -27,9 +28,9 @@ const App = () => {
       entryPoints: ['index.js'],
       bundle: true,
       write: false,
-      plugins: [unpkgPathPlugin(input)],
+      plugins: [unpkgPathPlugin(), fetchPlugin(input)],
       define: {
-        [ENV_KEY]: '"production"',
+        [env]: '"production"',
         global: 'window'
       }
     })
