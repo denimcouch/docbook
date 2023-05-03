@@ -6,6 +6,7 @@ const App = () => {
   const ref = useRef<any>()
   const [input, setInput] = useState('')
   const [code, setCode] = useState('')
+  const { ENV_KEY } = import.meta.env
 
   // init esbuild service
   const startService = async () => {
@@ -26,7 +27,11 @@ const App = () => {
       entryPoints: ['index.js'],
       bundle: true,
       write: false,
-      plugins: [unpkgPathPlugin()]
+      plugins: [unpkgPathPlugin()],
+      define: {
+        [ENV_KEY]: '"production"',
+        global: 'window'
+      }
     })
 
     setCode(result.outputFiles[0].text)
