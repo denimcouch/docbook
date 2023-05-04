@@ -20,7 +20,7 @@ export const fetchPlugin = (inputCode: string) => {
 
       // Handles checking for file in cache.
       // Will continue to next onLoad blocks if file isn't found in cache
-      build.onLoad({ filter: /.*/ }, async (args: any) => {
+      build.onLoad({ filter: /.*/ }, async (args: esbuild.OnLoadArgs) => {
         const cachedResult = await fileCache.getItem<esbuild.OnLoadResult>(
           args.path
         )
@@ -32,7 +32,7 @@ export const fetchPlugin = (inputCode: string) => {
 
       // Handles any css files
       // Note: will throw an error with files that contain @import and/or url()
-      build.onLoad({ filter: /.css$/ }, async (args: any) => {
+      build.onLoad({ filter: /.css$/ }, async (args: esbuild.OnLoadArgs) => {
         const { data, request } = await axios.get(args.path)
 
         const escaped = data
@@ -57,7 +57,7 @@ export const fetchPlugin = (inputCode: string) => {
       })
 
       // Handles all other modules
-      build.onLoad({ filter: /.*/ }, async (args: any) => {
+      build.onLoad({ filter: /.*/ }, async (args: esbuild.OnLoadArgs) => {
         const { data, request } = await axios.get(args.path)
 
         const result: esbuild.OnLoadResult = {
