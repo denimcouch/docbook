@@ -43,7 +43,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
   return (
     <div className={`editor ${containerClassName ?? ''}`}>
       <button
-        className='button button-format is-primary is-small'
+        className='button editor__button is-primary is-small'
         onClick={handleFormat}
       >
         Format
