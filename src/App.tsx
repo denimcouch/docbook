@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 import { unpkgPathPlugin } from './plugins/unpkg-path-plugin'
 import { fetchPlugin } from './plugins/fetch-plugin'
 
+import CodeEditor from './components/CodeEditor'
+
 const App = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const ref = useRef<any>()
@@ -68,11 +70,11 @@ const App = () => {
     <main>
       <h1>DocBook</h1>
       <div className='codeEditorBlock'>
-        <textarea
-          className='codeEditorBlock__editor'
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        ></textarea>
+        <CodeEditor
+          onChange={(value = '') => setInput(value)}
+          initialValue='// Write any javascript here'
+          containerClassName='codeEditorBlock__editor'
+        />
         <div className='codeEditorBlock__buttons'>
           <button
             className='codeEditorBlock__button codeEditorBlock__button--submit'
