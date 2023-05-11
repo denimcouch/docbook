@@ -1,13 +1,14 @@
 .editor {
   position: relative;
   height: 100%;
+  width: max(100%, 300px);
 }
 
 .editor .button.editor__button {
   opacity: 0;
   position: absolute;
-  top: .5rem;
-  right: .5rem;
+  top: 0.5rem;
+  right: 0.5rem;
   z-index: 1;
   transition: opacity 200ms ease-in-out;
 }

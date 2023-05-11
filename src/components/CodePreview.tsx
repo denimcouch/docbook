@@ -1,3 +1,4 @@
+import '../styles/code-preview.css'
 import { useRef, useEffect } from 'react'
 
 interface CodePreviewProps {
