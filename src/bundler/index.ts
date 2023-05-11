@@ -5,10 +5,7 @@ import { fetchPlugin } from '../plugins/fetch-plugin'
 const env = ['process', 'env', 'NODE_ENV'].join('.')
 let service: esbuild.Service
 
-export default async (rawCode: string) => {
-  // initialize esbuild
-  // transpile and bundle rawCode once we're sure esbuild initialized
-  // return the result
+const bundle = async (rawCode: string) => {
   if (!service) {
     service = await esbuild.startService({
       worker: true,
@@ -29,3 +26,5 @@ export default async (rawCode: string) => {
 
   return result.outputFiles[0].text
 }
+
+export default bundle
