@@ -15,16 +15,17 @@ const CodeBlock = () => {
   }
 
   return (
-    <Resizable resizeDirection='vertical'>
-      <div className='codeBlock'>
-        <Resizable resizeDirection='horizontal'>
-          <CodeEditor
-            onChange={(value = '') => setInput(value)}
-            initialValue={input}
-            containerClassName='codeBlock__editor'
-          />
-        </Resizable>
-        {/* <div className='codeBlock__buttons'>
+    <section className='codeBlock'>
+      <Resizable resizeDirection='vertical'>
+        <div className='codeBlock__wrapper'>
+          <Resizable resizeDirection='horizontal'>
+            <CodeEditor
+              onChange={(value = '') => setInput(value)}
+              initialValue={input}
+              containerClassName='codeBlock__editor'
+            />
+          </Resizable>
+          {/* <div className='codeBlock__buttons'>
           <button
             className='codeBlock__button codeBlock__button--submit'
             onClick={handleSubmit}
@@ -32,9 +33,10 @@ const CodeBlock = () => {
             Submit
           </button>
         </div> */}
-        <CodePreview code={code} containerClassName='codeBlock__preview' />
-      </div>
-    </Resizable>
+          <CodePreview code={code} containerClassName='codeBlock__preview' />
+        </div>
+      </Resizable>
+    </section>
   )
 }
 
