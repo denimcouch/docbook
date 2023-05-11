@@ -17,11 +17,13 @@ const CodeBlock = () => {
   return (
     <Resizable resizeDirection='vertical'>
       <div className='codeBlock'>
-        <CodeEditor
-          onChange={(value = '') => setInput(value)}
-          initialValue={input}
-          containerClassName='codeBlock__editor'
-        />
+        <Resizable resizeDirection='horizontal'>
+          <CodeEditor
+            onChange={(value = '') => setInput(value)}
+            initialValue={input}
+            containerClassName='codeBlock__editor'
+          />
+        </Resizable>
         {/* <div className='codeBlock__buttons'>
           <button
             className='codeBlock__button codeBlock__button--submit'

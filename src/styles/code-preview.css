@@ -5,6 +5,7 @@
 
 .preview {
   position: relative;
+  flex: 1 1 auto;
 }
 
 .react-draggable-transparent-selection .preview:after {
@@ -19,5 +20,5 @@
 }
 
 .preview > iframe {
-  background-color: #fff;
+  width: 100%;
 }
