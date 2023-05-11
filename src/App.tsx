@@ -1,39 +1,11 @@
-import { useState } from 'react'
-import bundler from './bundler'
-import CodeEditor from './components/CodeEditor'
-import CodePreview from './components/CodePreview'
+import CodeBlock from "./components/CodeBlock"
 
 const App = () => {
-  const [input, setInput] = useState('')
-  const [code, setCode] = useState('')
-
-  const handleSubmit = async () => {
-    const output = await bundler(input)
-    setCode(output)
-  }
 
   return (
     <main>
       <h1 className='is-size-2 has-text-white'>DocBook</h1>
-      <div className='codeEditorBlock'>
-        <CodeEditor
-          onChange={(value = '') => setInput(value)}
-          initialValue={input}
-          containerClassName='codeEditorBlock__editor'
-        />
-        <div className='codeEditorBlock__buttons'>
-          <button
-            className='codeEditorBlock__button codeEditorBlock__button--submit'
-            onClick={handleSubmit}
-          >
-            Submit
-          </button>
-        </div>
-        <CodePreview
-          code={code}
-          containerClassName='codeEditorBlock__preview'
-        />
-      </div>
+      <CodeBlock />
     </main>
   )
 }
