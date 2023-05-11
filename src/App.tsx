@@ -29,9 +29,10 @@ const App = () => {
             Submit
           </button>
         </div>
-        <div className='codeEditorBlock__preview'>
-          <CodePreview code={code} />
-        </div>
+        <CodePreview
+          code={code}
+          containerClassName='codeEditorBlock__preview'
+        />
       </div>
     </main>
   )

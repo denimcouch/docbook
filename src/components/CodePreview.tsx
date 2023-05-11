@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react'
 
 interface CodePreviewProps {
   code: string
+  containerClassName?: string
 }
 
 const html = `
@@ -24,7 +25,10 @@ const html = `
 </html>
 `
 
-const CodePreview: React.FC<CodePreviewProps> = ({ code }) => {
+const CodePreview: React.FC<CodePreviewProps> = ({
+  code,
+  containerClassName
+}) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const iframe = useRef<any>()
 
@@ -36,13 +40,15 @@ const CodePreview: React.FC<CodePreviewProps> = ({ code }) => {
   }, [code])
 
   return (
-    <iframe
-      ref={iframe}
-      title='code preview'
-      srcDoc={html}
-      src='true'
-      sandbox='allow-scripts'
-    />
+    <div className={`preview ${containerClassName ?? ''}`}>
+      <iframe
+        ref={iframe}
+        title='code preview'
+        srcDoc={html}
+        src='true'
+        sandbox='allow-scripts'
+      />
+    </div>
   )
 }
 
