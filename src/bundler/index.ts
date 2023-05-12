@@ -13,18 +13,31 @@ const bundle = async (rawCode: string) => {
     })
   }
 
-  const result = await service.build({
-    entryPoints: ['index.js'],
-    bundle: true,
-    write: false,
-    plugins: [unpkgPathPlugin(), fetchPlugin(rawCode)],
-    define: {
-      [env]: '"production"',
-      global: 'window'
+  try {
+    const result = await service.build({
+      entryPoints: ['index.js'],
+      bundle: true,
+      write: false,
+      plugins: [unpkgPathPlugin(), fetchPlugin(rawCode)],
+      define: {
+        [env]: '"production"',
+        global: 'window'
+      }
+    })
+    return {
+      code: result.outputFiles[0].text,
+      error: ''
     }
-  })
-
-  return result.outputFiles[0].text
+  } catch (error) {
+    if (error instanceof Error) {
+      return {
+        code: '',
+        error: error.message
+      }
+    } else {
+      throw error
+    }
+  }
 }
 
 export default bundle

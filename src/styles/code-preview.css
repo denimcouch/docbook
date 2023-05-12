@@ -22,3 +22,12 @@
 .preview > iframe {
   width: 100%;
 }
+
+.preview__error {
+  position: absolute;
+  color: #000;
+  top: 10px;
+  left: 10px;
+  border: 2px red solid;
+  padding: 1.5rem;
+}

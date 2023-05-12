@@ -3,6 +3,7 @@ import { useRef, useEffect } from 'react'
 
 interface CodePreviewProps {
   code: string
+  errMsg: string
   containerClassName?: string
 }
 
@@ -14,15 +15,22 @@ const html = `
   <body>
     <div id="root"></div>
     <script>
+      const handleError = (err) => {
+        const root = document.getElementById('root');
+        root.innerHTML = '<div style="border: 2px red solid; padding: .5rem;"><h4>Runtime Error</h4>' + err + '/div';
+        console.error(err);
+      };
+      window.addEventListener('error', (event) => {
+        event.preventDefault();
+        handleError(event.error);
+      });
       window.addEventListener('message', (event) => {
         try {
           eval(event.data);
         } catch (err) {
-          const root = document.getElementById('root');
-          root.innerHTML = '<div style="border: 2px red solid; padding: .5rem;"><h4>Runtime Error</h4>' + err + '/div';
-          console.error(err);
+          handleError(err);
         }
-      }, false)
+      }, false);
     </script>
   </body>
 </html>
@@ -30,6 +38,7 @@ const html = `
 
 const CodePreview: React.FC<CodePreviewProps> = ({
   code,
+  errMsg,
   containerClassName
 }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -50,6 +59,7 @@ const CodePreview: React.FC<CodePreviewProps> = ({
 
   return (
     <div className={`preview ${containerClassName ?? ''}`}>
+      {errMsg && <div className='preview__error'>{errMsg}</div>}
       <iframe
         ref={iframe}
         title='code preview'

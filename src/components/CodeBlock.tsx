@@ -8,11 +8,13 @@ import Resizable from './Resizable'
 const CodeBlock = () => {
   const [input, setInput] = useState('')
   const [code, setCode] = useState('')
+  const [error, setError] = useState('')
 
   useEffect(() => {
     const timer = setTimeout(async () => {
-      const output = await bundler(input)
-      setCode(output)
+      const { code, error } = await bundler(input)
+      setCode(code)
+      setError(error)
     }, 1000)
 
     return () => {
@@ -31,7 +33,11 @@ const CodeBlock = () => {
               containerClassName='codeBlock__editor'
             />
           </Resizable>
-          <CodePreview code={code} containerClassName='codeBlock__preview' />
+          <CodePreview
+            code={code}
+            errMsg={error}
+            containerClassName='codeBlock__preview'
+          />
         </div>
       </Resizable>
     </section>
