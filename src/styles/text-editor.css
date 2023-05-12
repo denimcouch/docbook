@@ -1,3 +1,26 @@
 .textEditor .wmde-markdown {
   padding: 0.75rem;
 }
+
+.textEditor.textEditor--editing
+  > .wmde-markdown-var.w-md-editor
+  > .w-md-editor-bar
+  > svg {
+  display: none;
+}
+
+.textEditor.textEditor--editing
+  > .wmde-markdown-var.w-md-editor
+  > .w-md-editor-bar {
+  display: block;
+
+  background-color: #37414b;
+  background-repeat: no-repeat;
+  background-position: 50%;
+
+  height: 12px;
+  width: 100%;
+
+  cursor: row-resize;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+}
