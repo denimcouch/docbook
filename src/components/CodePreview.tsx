@@ -39,7 +39,13 @@ const CodePreview: React.FC<CodePreviewProps> = ({
     // refresh the iframe with clean env
     iframe.current.srcdoc = html
 
-    iframe.current.contentWindow.postMessage(code, '*')
+    const timer = setTimeout(() => {
+      iframe.current.contentWindow.postMessage(code, '*')
+    }, 50)
+
+    return () => {
+      clearTimeout(timer)
+    }
   }, [code])
 
   return (

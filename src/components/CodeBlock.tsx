@@ -1,5 +1,5 @@
 import '../styles/code-block.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import bundler from '../bundler'
 import CodeEditor from './CodeEditor'
 import CodePreview from './CodePreview'
@@ -9,10 +9,16 @@ const CodeBlock = () => {
   const [input, setInput] = useState('')
   const [code, setCode] = useState('')
 
-  const handleSubmit = async () => {
-    const output = await bundler(input)
-    setCode(output)
-  }
+  useEffect(() => {
+    const timer = setTimeout(async () => {
+      const output = await bundler(input)
+      setCode(output)
+    }, 1000)
+
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [input])
 
   return (
     <section className='codeBlock'>
@@ -25,14 +31,6 @@ const CodeBlock = () => {
               containerClassName='codeBlock__editor'
             />
           </Resizable>
-          {/* <div className='codeBlock__buttons'>
-          <button
-            className='codeBlock__button codeBlock__button--submit'
-            onClick={handleSubmit}
-          >
-            Submit
-          </button>
-        </div> */}
           <CodePreview code={code} containerClassName='codeBlock__preview' />
         </div>
       </Resizable>
