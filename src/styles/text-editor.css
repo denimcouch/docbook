@@ -1,5 +1,5 @@
 .textEditor .wmde-markdown {
-  padding: 0.75rem;
+  padding: 1rem 1.5rem;
 }
 
 .textEditor.textEditor--editing
@@ -23,4 +23,42 @@
 
   cursor: row-resize;
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+}
+
+.textEditor em {
+  font-style: italic;
+}
+ 
+.textEditor .wmde-markdown hr {
+  border-top: 1px solid #dee5ed;
+}
+ 
+.textEditor .wmde-markdown ol {
+  list-style: decimal;
+}
+
+.textEditor .wmde-markdown ul {
+  list-style: initial;
+}
+
+.textEditor .w-md-editor-toolbar li button {
+  color: #d4d4d4;
+}
+ 
+.textEditor .w-md-editor,
+.textEditor .w-md-editor .w-md-editor-text-pre {
+  color: #d4d4d4;
+}
+ 
+.textEditor .w-md-editor-text-pre .bold {
+  color: unset;
+}
+ 
+.textEditor .token.list.punctuation {
+  background-color: unset;
+}
+
+.textEditor .wmde-markdown strong {
+  font-weight: 700;
+  color: inherit;
 }

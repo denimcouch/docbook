@@ -8,6 +8,8 @@ const TextEditor: React.FC = () => {
   const editorRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
+    // This listener function checks if the user clicks inside the text editor.
+    // We only want to switch between editor views if the user clicks outside of the editor.
     const listener = (e: MouseEvent) => {
       const insideEditor =
         editorRef.current &&
@@ -31,7 +33,7 @@ const TextEditor: React.FC = () => {
   if (editing) {
     return (
       <div ref={editorRef} className='textEditor textEditor--editing'>
-        <MDEditor value={value} onChange={(newVal = '') => setValue(newVal)} />
+        <MDEditor value={value} onChange={(newVal) => setValue(newVal || '')} />
       </div>
     )
   }
