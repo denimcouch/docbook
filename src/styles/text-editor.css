@@ -2,6 +2,10 @@
   padding: 1rem 1.5rem;
 }
 
+.textEditor .wmde-markdown h2 {
+  border-bottom: 1px solid #d4d4d4;
+}
+
 .textEditor.textEditor--editing
   > .wmde-markdown-var.w-md-editor
   > .w-md-editor-bar
